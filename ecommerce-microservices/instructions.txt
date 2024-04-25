@@ -4,7 +4,7 @@ then now 3 images are created, check docker desktop.
 
 Now tag these images using https://docs.docker.com/reference/cli/docker/image/tag/ and push them to your dockerhub (your own account)
 
-Now in all the yaml files replace this line  image: atchutaram/order_processing_service:latest with your image name
+Now in all the yaml files replace this line  image: vibhagangolli/order_processing_service:latest with your image name
 
 Re-check your docker hub.
 
