@@ -1,0 +1,53 @@
+## First run docker-compose up --build
+
+then now 3 images are created, check docker desktop.
+
+Now tag these images using https://docs.docker.com/reference/cli/docker/image/tag/ and push them to your dockerhub (your own account)
+
+Now in all the yaml files replace this line  image: atchutaram/order_processing_service:latest with your image name
+
+Re-check your docker hub.
+
+Now stop docker, even the docker-compose.yml can be stopped
+
+
+----- Next
+In a terminal 
+
+minikube start
+
+kubectl apply -f product-management-service.yaml
+kubectl apply -f user-auth-service.yaml
+kubectl apply -f product-management-deployment.yaml
+kubectl apply -f user-auth-deployment.yaml
+
+kubectl apply -f order-processing-deployment.yaml
+
+kubectl apply -f order-processing-service.yaml
+
+kubectl apply -f microservices-network-networkpolicy.yaml
+
+
+Then open ecom_st.py and change the first three lines 
+
+AUTH_BASE_URL = ""
+PRODUCT_BASE_URL ="" 
+ORDER_BASE_URL = ""
+Run the below commands in 3 separate terminals and replace the urls ,  user-auth  is AUTH_BASE_URL, product-management is PRODUCT_BASE_URL and order-processing is ORDER_BASE_URL
+
+minikube service order-processing  --url
+minikube service product-management   --url
+minikube service user-auth   --url
+
+
+In a new terminal run 
+kubectl get svc
+kubectl get deployment
+kubectl get pod
+
+##All 3 commands should give 3 micro-services
+Now run streamlit ecom_st.py
+
+After everything is done--- check below
+kubectl delete svc order-processing  product-management user-auth     
+kubectl delete deployment order-processing  product-management user-auth    
